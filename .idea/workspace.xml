@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="896c2887-8546-4bac-be00-3e74899c1d81" name="Default" comment="" />
+    <list default="true" id="896c2887-8546-4bac-be00-3e74899c1d81" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/clock_times_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/clock_times_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/clock_times/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/clock_times/_form.html.erb" />
+    </list>
     <ignored path="ClockIn.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,19 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/clock_times/new.html.erb">
+      <file leaf-file-name="clock_times_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/clock_times_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="44" selection-end="83" vertical-scroll-proportion="0.0">
+            <state line="53" column="23" selection-start="1376" selection-end="1376" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clock_times_controller.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/clock_times_controller.rb">
+      <file leaf-file-name="_form.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/clock_times/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="21" selection-start="1868" selection-end="1868" vertical-scroll-proportion="0.41314554">
+            <state line="20" column="79" selection-start="804" selection-end="804" vertical-scroll-proportion="0.17466174">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/edit.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -62,7 +77,16 @@
         <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="36" column="32" selection-start="854" selection-end="854" vertical-scroll-proportion="-15.115385">
-              <folding />
+              <folding>
+                <marker date="1341454613000" expanded="true" signature="36:76" placeholder="..." />
+                <marker date="1341454613000" expanded="true" signature="81:129" placeholder="..." />
+                <marker date="1341454613000" expanded="true" signature="134:176" placeholder="..." />
+                <marker date="1341454613000" expanded="true" signature="243:1199" placeholder="for ... end" />
+                <marker date="1341454613000" expanded="true" signature="284:418" placeholder="if ... end" />
+                <marker date="1341454613000" expanded="true" signature="437:604" placeholder="if ... end" />
+                <marker date="1341454613000" expanded="true" signature="829:982" placeholder="if ... end" />
+                <marker date="1341454613000" expanded="true" signature="1213:1419" placeholder="if ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,7 +94,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="29" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0">
+            <state line="4" column="31" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -104,15 +128,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/routes.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="21" selection-start="967" selection-end="986" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -129,6 +144,9 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -142,12 +160,12 @@
         <option value="$PROJECT_DIR$/app/views/clock_times/clock_out.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/clock_times.css.scss" />
-        <option value="$PROJECT_DIR$/app/views/clock_times/_form.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/clock_times_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/clock_times_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/clock_times/_form.html.erb" />
       </list>
     </option>
   </component>
@@ -208,7 +226,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -473,7 +491,7 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="editor.preferences.appearance" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -825,11 +843,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="56" selection-start="698" selection-end="698" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/clock_times.css.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0" />
@@ -838,11 +851,6 @@
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/clock_times/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="44" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/clock_times/show.html.erb">
@@ -858,11 +866,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/clock_times/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="44" selection-end="83" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/clock_time.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="12" selection-start="80" selection-end="83" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
@@ -887,16 +890,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="29" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="32" selection-start="854" selection-end="854" vertical-scroll-proportion="-15.115385">
+          <folding>
+            <marker date="1341454613000" expanded="true" signature="36:76" placeholder="..." />
+            <marker date="1341454613000" expanded="true" signature="81:129" placeholder="..." />
+            <marker date="1341454613000" expanded="true" signature="134:176" placeholder="..." />
+            <marker date="1341454613000" expanded="true" signature="243:1199" placeholder="for ... end" />
+            <marker date="1341454613000" expanded="true" signature="284:418" placeholder="if ... end" />
+            <marker date="1341454613000" expanded="true" signature="437:604" placeholder="if ... end" />
+            <marker date="1341454613000" expanded="true" signature="829:982" placeholder="if ... end" />
+            <marker date="1341454613000" expanded="true" signature="1213:1419" placeholder="if ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/clock_time.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="12" selection-start="80" selection-end="83" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="31" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -908,9 +925,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/clock_times_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="21" selection-start="1868" selection-end="1868" vertical-scroll-proportion="0.41314554">
+        <state line="53" column="23" selection-start="1376" selection-end="1376" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/clock_times/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="79" selection-start="804" selection-end="804" vertical-scroll-proportion="0.17466174">
           <folding />
         </state>
       </provider>

@@ -38,7 +38,7 @@ class ClockTimesController < ApplicationController
 
     puts "********** at auto clock in"
 
-    @user.update_attributes(:currently_working => true)
+    #@user.update_attributes(:currently_working => true)
 
     respond_to do |format|
       if @clock_time.save
@@ -60,9 +60,9 @@ class ClockTimesController < ApplicationController
 
     #todo this needs to be moved into update so if the update fails the user is not marked as no longer currently_working
     #todo ...possibly just remove currently_working all together and use the presence of in/out instead
-    if @clocking_out
-      @user.update_attributes(:currently_working => false)
-    end
+    #if @clocking_out
+    #  @user.update_attributes(:currently_working => false)
+    #end
   end
 
   # POST /clock_times
@@ -75,10 +75,8 @@ class ClockTimesController < ApplicationController
 
     time_in_to_update = get_time_to_update(params["use_current"], params[:clock_time], "in")
 
-    if (!@user.currently_working)
-      @clock_time.in = time_in_to_update
-      @user.update_attributes(:currently_working => true)
-    end
+
+    @clock_time.in = time_in_to_update
 
     respond_to do |format|
       if @clock_time.save

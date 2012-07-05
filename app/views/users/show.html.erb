@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @user.password %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+<h2>Previous clock ins:</h2>
+<% @currently_working = false %>
+<% for clock_time in @clock_times %>
+    <% if @user.clock_times.last == clock_time %>
+        <br/>
+        <br/>
+        <h2>Most recent clock in:</h2>
+        <br/>
+    <% end %>
+
+    <%
+       if clock_time.out.present?
+         clock_time_diff = Time.at(clock_time.out.to_time - clock_time.in.to_time).utc
+       else
+         clock_time_diff = nil
+       end
+    %>
+
+    Time worked on <%= clock_time.in.strftime("%A") %>: <span class="red"> <%= clock_time_diff.nil? ? nil : clock_time_diff.strftime("%H:%M") %> </span>
+    <h3>In: <%= clock_time.in.strftime("%H:%M") %></h3>
+    <% if clock_time.out.nil? %>
+        <% @currently_working = true %>
+    <% else %>
+        <h3>Out: <%= clock_time.out.strftime("%H:%M") %></h3>
+    <% end %>
+    <%= link_to 'Destroy', [@user, clock_time], confirm: 'Are you sure?', method: :delete %> |
+    <%= link_to 'Edit', edit_user_clock_time_path(@user, clock_time) %>
+    <br/>-------------------------<br/>
+<% end %>
+<br/>
+
+<% if (@currently_working) %>
+    <%= link_to 'Clock out', edit_user_clock_time_path(@user, clock_time, :clock_out => 'true') %>
+<% else %>
+    <%= link_to 'Clock in', new_user_clock_time_path(@user) %>
+<% end %>
+
+<br/>change the way we get the last clock_time....make better <br>
+<br/>
+<br/>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

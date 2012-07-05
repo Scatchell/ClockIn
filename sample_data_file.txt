@@ -1,0 +1,4 @@
+sample1 0 0 4
+sample2 0 0 10
+sample3 0 0 15
+sample4 0 0 20

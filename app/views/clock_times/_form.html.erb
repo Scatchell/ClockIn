@@ -1,0 +1,56 @@
+<%= form_for [@user, @clock_time] do |f| %>
+    <% if @clock_time.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@clock_time.errors.count, "error") %> prohibited this clock_time from being saved:</h2>
+
+          <ul>
+            <% @clock_time.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            toggle_hidden('#datetime_select', '#use_current', '#use_current_time');
+            toggle_hidden('#datetime_select_out', '#use_current_out', '#use_current_time_out');
+        });
+    </script>
+    <% if @clocking_out
+         user_clock_in_message = "Alter your original clock in time:"
+       else
+         user_clock_in_message = "Clock in time:"
+       end %>
+
+    <h3>1. <%= user_clock_in_message %> </h3>
+    <input id='use_current_time' type="checkbox" onclick="toggle_hidden('#datetime_select', '#use_current', '#use_current_time')"> Use current time to clock IN
+    <br>
+
+    <%= hidden_field_tag 'use_current', 'true' %>
+
+    <div id='datetime_select' class="field">
+      <%= f.label :in %>
+      <br/>
+      <%= f.datetime_select :in %>
+    </div>
+    <br/>
+
+    <% if @clock_time.out.present? || @clocking_out %>
+        <h3>2. Clock out time:</h3>
+
+        <input id='use_current_time_out' type="checkbox" onclick="toggle_hidden('#datetime_select_out', '#use_current_out', '#use_current_time_out')"> Use current time to clock OUT
+
+        <%= hidden_field_tag 'use_current_out', 'false' %>
+
+        <div id='datetime_select_out' class="field">
+          <%= f.label :out %>
+          <br/>
+          <%= f.datetime_select :out, :default => Time.now %>
+        </div>
+    <% end %>
+    <h3>3. Update by clicking below</h3>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

@@ -1,0 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+clock_time_1:
+  in: 2012-06-03 23:00:00
+  out: 2012-06-03 23:10:00

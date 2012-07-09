@@ -32,37 +32,12 @@ class ClockTimesController < ApplicationController
     end
   end
 
-  def auto_clock_in
-    @user = User.find(params[:user_id])
-    @clock_time = @user.clock_times.new(:in => Time.now)
-
-    puts "********** at auto clock in"
-
-    #@user.update_attributes(:currently_working => true)
-
-    respond_to do |format|
-      if @clock_time.save
-        format.html { redirect_to @user, notice: 'You have successfully clocked in' }
-        format.json { render json: @clock_time, status: :created, location: @clock_time }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @clock_time.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # GET /clock_times/1/edit
   def edit
     @user = User.find(params[:user_id])
     @clock_time = @user.clock_times.find(params[:id])
 
     @clocking_out = params[:clock_out]
-
-    #todo this needs to be moved into update so if the update fails the user is not marked as no longer currently_working
-    #todo ...possibly just remove currently_working all together and use the presence of in/out instead
-    #if @clocking_out
-    #  @user.update_attributes(:currently_working => false)
-    #end
   end
 
   # POST /clock_times
@@ -70,8 +45,6 @@ class ClockTimesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @clock_time = @user.clock_times.new(params[:clock_time])
-
-    puts "********** at create"
 
     time_in_to_update = get_time_to_update(params["use_current"], params[:clock_time], "in")
 
@@ -95,10 +68,6 @@ class ClockTimesController < ApplicationController
     @user = User.find(params[:user_id])
     @clock_time = @user.clock_times.find(params[:id])
 
-    puts "************************"
-    puts params.inspect
-    puts "************************"
-
     time_in_to_update = get_time_to_update(params["use_current"], params[:clock_time], "in")
 
     @clock_time.in = time_in_to_update
@@ -108,6 +77,9 @@ class ClockTimesController < ApplicationController
     if !time_out_to_update.nil?
       @clock_time.out = time_out_to_update
     end
+
+    puts "**********updating clocktime"
+    puts params[:clock_time].inspect
 
     respond_to do |format|
       if @clock_time.update_attributes(params[:clock_time])
@@ -143,6 +115,7 @@ class ClockTimesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_path(@user) }
       format.json { head :no_content }
+      format.js { render :nothing => true }
     end
   end
 end

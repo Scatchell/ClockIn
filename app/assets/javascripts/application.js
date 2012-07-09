@@ -24,3 +24,15 @@ function toggle_hidden(div_id, use_current_hidden_tag_id, checkbox_id) {
     }
 
 }
+
+$(document).ready(
+    function() {
+        $('.delete_user').bind('ajax:success', function() {
+            $(this).closest('tr').fadeOut();
+        });
+
+        $('.delete_clock_time').bind('ajax:success', function() {
+            $(this).closest('div').fadeOut();
+        });
+    }
+);

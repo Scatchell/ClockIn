@@ -14,9 +14,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    puts "&&&&&&&&&&&&&&"
-    puts @user.clock_times.all.inspect
-    puts "&&&&&&&&&&&&&&"
 
     @clock_times = @user.clock_times.all
 
@@ -49,7 +46,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     respond_to do |format|
-
       if @user.save()
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
@@ -82,9 +78,90 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
+
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+      format.js { render nothing: true }
     end
+  end
+
+  def auto_clock_in
+    @user = User.find(params[:user_id])
+
+    @clock_times = @user.clock_times.all
+
+    @already_clocked_in = is_user_already_clocked_in @clock_times
+
+
+
+    if @already_clocked_in
+      redirect_to @user, notice: 'You have already clocked in, and cannot again until you clock out'
+    else
+      @clock_time = @user.clock_times.new(:in => Time.now)
+
+      respond_to do |format|
+        if @clock_time.save
+          format.html { redirect_to @user, notice: 'You have successfully clocked in' }
+          format.json { render json: @clock_time, status: :created, location: @clock_time }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @clock_time.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+  end
+
+  def is_user_already_clocked_in clock_times
+    already_clocked_in = false
+
+    for clock_time in clock_times
+      if clock_time.out.nil?
+        already_clocked_in = true
+      end
+    end
+
+    already_clocked_in
+  end
+
+  def get_last_clocked_in_clock_time clock_times
+    for clock_time in clock_times
+      if clock_time.out.nil?
+        break
+      end
+      clock_time = nil
+    end
+
+    clock_time
+  end
+
+  def auto_clock_out
+    @user = User.find(params[:user_id])
+
+    puts @user.inspect
+
+
+    @clock_times = @user.clock_times.all
+
+    @last_clock_time = get_last_clocked_in_clock_time @clock_times
+
+    if !@last_clock_time.nil?
+      puts "***CLOCKING OUT***"
+      @clock_time = @user.clock_times.find(@last_clock_time.id)
+
+      respond_to do |format|
+        if @clock_time.update_attributes(:out => Time.now)
+          format.html { redirect_to @user, notice: 'You were successfully clocked out.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @clock_time.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to @user, notice: "You cannot clock out, since you haven't been clocked in yet"
+    end
+
   end
 end

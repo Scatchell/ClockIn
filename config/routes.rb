@@ -4,9 +4,9 @@ ClockIn::Application.routes.draw do
     resources :clock_times
   end
 
-  match '/users/:user_id/clock_times/:id/clock_out', :to => 'clock_times#clock_out', :as => 'clock_out_user_clock_time'
+  match '/users/:user_id/auto_clock_out', :to => 'users#auto_clock_out', :as => 'auto_clock_out_user'
 
-  match '/users/:user_id/auto_clock_in', :to => 'clock_times#auto_clock_in', :as => 'auto_clock_in_user_clock_time'
+  match '/users/:user_id/auto_clock_in', :to => 'users#auto_clock_in', :as => 'auto_clock_in_user'
 
   root :to => "users#index"
 

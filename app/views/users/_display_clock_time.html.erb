@@ -1,0 +1,33 @@
+<% if !clock_time.in.nil? %>
+    <div class="clock_time">
+      <% if @user.clock_times.last == clock_time %>
+          <br/>
+          <br/>
+
+          <h2>Most recent clock in:</h2>
+          <br/>
+      <% end %>
+
+      <%
+         if clock_time.out.present?
+           clock_time_diff = Time.at(clock_time.out.to_time - clock_time.in.to_time).utc
+         else
+           clock_time_diff = nil
+         end
+      %>
+
+      Time worked on <%= clock_time.in.strftime("%A") %>:
+      <span class="red"> <%= clock_time_diff.nil? ? nil : clock_time_diff.strftime("%H:%M") %> </span>
+
+      <h3>In: <%= clock_time.in.strftime("%H:%M") %></h3>
+      <% if clock_time.out.nil? %>
+          <% @currently_working = clock_time %>
+      <% else %>
+          <h3>Out: <%= clock_time.out.strftime("%H:%M") %></h3>
+      <% end %>
+      <%= link_to 'Delete Clock In', [@user, clock_time], confirm: 'Are you sure?', method: :delete, remote: true, class: 'delete_clock_time' %>
+      |
+      <%= link_to 'Edit', edit_user_clock_time_path(@user, clock_time) %>
+      <br/>-------------------------<br/>
+    </div>
+<% end %>

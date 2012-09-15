@@ -55,9 +55,11 @@ class ClockTimesController < ApplicationController
       if @clock_time.save
         format.html { redirect_to @user, notice: 'You have successfully clocked in' }
         format.json { render json: @clock_time, status: :created, location: @clock_time }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @clock_time.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -77,9 +79,6 @@ class ClockTimesController < ApplicationController
     if !time_out_to_update.nil?
       @clock_time.out = time_out_to_update
     end
-
-    puts "**********updating clocktime"
-    puts params[:clock_time].inspect
 
     respond_to do |format|
       if @clock_time.update_attributes(params[:clock_time])
@@ -114,8 +113,9 @@ class ClockTimesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to user_path(@user) }
-      format.json { head :no_content }
-      format.js { render :nothing => true }
+      format.js {render json: @clock_time, content_type: 'text/json' }
     end
+
+
   end
 end

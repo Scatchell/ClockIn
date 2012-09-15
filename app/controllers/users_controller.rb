@@ -10,17 +10,30 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
+  # GET /users/1DIS
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
 
     @clock_times = @user.clock_times.all
+    @clock_times_by_week = separate_by_weeks @clock_times
+    puts "farg..." + @clock_times_by_week.inspect
+    @clock_time = @user.clock_times.new
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
+  end
+
+  def separate_by_weeks clock_times
+    week_hash = Hash.new {|hash,key| hash[key] = [] }
+
+    for clock_time in clock_times
+      week_hash[clock_time.in.strftime("%Y-%U")].push clock_time
+    end
+
+    week_hash
   end
 
   # GET /users/new
@@ -82,6 +95,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+      puts "*************:" + @user.inspect
       format.js { render nothing: true }
     end
   end
@@ -147,7 +161,6 @@ class UsersController < ApplicationController
     @last_clock_time = get_last_clocked_in_clock_time @clock_times
 
     if !@last_clock_time.nil?
-      puts "***CLOCKING OUT***"
       @clock_time = @user.clock_times.find(@last_clock_time.id)
 
       respond_to do |format|

@@ -1,4 +1,4 @@
-<%= form_for [@user, @clock_time] do |f| %>
+<%= form_for [@user, @clock_time], :remote => true do |f| %>
     <% if @clock_time.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@clock_time.errors.count, "error") %> prohibited this clock_time from being saved:</h2>
@@ -17,6 +17,7 @@
             toggle_hidden('#datetime_select_out', '#use_current_out', '#use_current_time_out');
         });
     </script>
+
     <% if @clocking_out
          user_clock_in_message = "Alter your original clock in time if you want:"
        else
@@ -51,6 +52,6 @@
     <% end %>
     <h3>3. Update by clicking below</h3>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit :value => "Clock in", :id => "submit" %>
     </div>
 <% end %>

@@ -15,46 +15,60 @@
   <%= @user.email %>
 </p>
 <h2>Previous clock ins:</h2>
-<% @currently_working = false %>
-<% for clock_time in @clock_times %>
-    <div class="clock_time">
-      <% if @user.clock_times.last == clock_time %>
-          <br/>
-          <br/>
+<div id="all_clock_times">
+  <%
+     @currently_working = nil
+     count_of_weeks = 1
 
-          <h2>Most recent clock in:</h2>
-          <br/>
-      <% end %>
+  %>
+  <% for clock_time_week in @clock_times_by_week.values %>
+        <div id="week<%= count_of_weeks %>" class="week_wrapper">
+        <b>Clock Times for week #<%= count_of_weeks %></b>
 
-      <%
-         if clock_time.out.present?
-           clock_time_diff = Time.at(clock_time.out.to_time - clock_time.in.to_time).utc
-         else
-           clock_time_diff = nil
-         end
-      %>
+        <% for clock_time in clock_time_week %>
+            <%= render :partial => 'display_clock_time',
+                     :locals => {:clock_time => clock_time} %>
+        <% end %>
 
-      Time worked on <%= clock_time.in.strftime("%A") %>:
-      <span class="red"> <%= clock_time_diff.nil? ? nil : clock_time_diff.strftime("%H:%M") %> </span>
+        <% count_of_weeks+=1 %>
+        </div>
+  <% end %>
 
-      <h3>In: <%= clock_time.in.strftime("%H:%M") %></h3>
-      <% if clock_time.out.nil? %>
-          <% @currently_working = true %>
-      <% else %>
-          <h3>Out: <%= clock_time.out.strftime("%H:%M") %></h3>
-      <% end %>
-      <%= link_to 'Delete Clock In', [@user, clock_time], confirm: 'Are you sure?', method: :delete, remote: true, class: 'delete_clock_time' %>
-      |
-      <%= link_to 'Edit', edit_user_clock_time_path(@user, clock_time) %>
-      <br/>-------------------------<br/>
-    </div>
-<% end %>
+  <a href="#" onclick="show_all_weeks();">Show All Weeks</a> <br/> <br/>
+  <a href="#" onclick="hide_all_except_last_week();">Hide All Except Most Current</a>
+
+  <script type="text/javascript">
+        function hide_all_except_last_week(){
+            var re = /week\d+/
+            var divs=document.getElementsByTagName('div')
+            for (var i=0;i<divs.length;i++){
+                week_int = parseInt(divs[i].id.replace("week", ""))
+              if (re.test(divs[i].id) && week_int != <%= count_of_weeks - 1 %>) {
+                  divs[i].style.display = "none";
+              }
+            }
+        }
+
+        function show_all_weeks() {
+            var re = /week\d+/
+            var divs=document.getElementsByTagName('div')
+            for (var i=0;i<divs.length;i++){
+              if (re.test(divs[i].id) && divs[i].style.display == "none") {
+                  divs[i].style.display = "block";
+              }
+            }
+        }
+
+        hide_all_except_last_week();
+  </script>
+
+</div>
 <br/>
 
-<% if (@currently_working) %>
-    <%= link_to 'Clock out', edit_user_clock_time_path(@user, clock_time, :clock_out => 'true') %>
-<% else %>
+<% if (@currently_working.nil?) %>
     <%= link_to 'Clock in', new_user_clock_time_path(@user) %>
+<% else %>
+    <%= link_to 'Clock out', edit_user_clock_time_path(@user, @currently_working, :clock_out => 'true') %>
 <% end %>
 ----------
 <%= render 'input_popup' %>

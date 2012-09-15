@@ -1,0 +1,7 @@
+$("#all_clock_times").append("<div class='new_clock_time'><%= escape_javascript("#{render :partial => 'users/display_clock_time', :locals => {:clock_time => @clock_time}}").html_safe %></div>");
+//bind_clock_time_delete_animation(jQuery( '.delete_clock_time' ));
+//$('.new_clock_time').find('a.delete_clock_time').html("test");
+
+$('.delete_clock_time').bind('click', function() {
+    $(this).closest('div').fadeOut();
+});

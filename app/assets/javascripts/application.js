@@ -25,14 +25,25 @@ function toggle_hidden(div_id, use_current_hidden_tag_id, checkbox_id) {
 
 }
 
-$(document).ready(
-    function() {
-        $('.delete_user').bind('ajax:success', function() {
-            $(this).closest('tr').fadeOut();
-        });
+function bind_clock_time_delete_animation(delete_class){
+    delete_class.bind('ajax:success', function() {
+        $(this).closest('div').fadeOut();
+    });
+}
 
-        $('.delete_clock_time').bind('ajax:success', function() {
-            $(this).closest('div').fadeOut();
-        });
-    }
-);
+function bind_dialog_form_close(dialog_form){
+    $('#submit').bind('click', function() {
+        dialog_form.dialog( "close");
+    });
+}
+
+$(document).ready( jQuery(function($) {
+    $('.delete_user').bind('ajax:success', function() {
+
+        $(this).closest('tr').fadeOut();
+    });
+
+    $('.delete_clock_time').bind('ajax:success', function() {
+        $(this).closest('div').fadeOut();
+    });
+}));
